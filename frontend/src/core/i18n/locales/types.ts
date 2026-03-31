@@ -133,7 +133,6 @@ export interface Translations {
     nameStepContinue: string;
     nameStepInvalidError: string;
     nameStepAlreadyExistsError: string;
-    nameStepNetworkError: string;
     nameStepCheckError: string;
     nameStepBootstrapMessage: string;
     agentCreated: string;

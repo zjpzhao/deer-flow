@@ -80,9 +80,13 @@ export default function NewAgentPage() {
         setNameError(t.agents.nameStepAlreadyExistsError);
         return;
       }
-    } catch (err) {
-      if (err instanceof TypeError && err.message === "Failed to fetch") {
-        setNameError(t.agents.nameStepNetworkError);
+    } catch (error) {
+      if (error instanceof AgentNameCheckError) {
+        setNameError(
+          error.reason === "backend_unreachable"
+            ? t.agents.nameStepCheckError
+            : error.message,
+        );
       } else {
         setNameError(t.agents.nameStepCheckError);
       }
@@ -103,7 +107,6 @@ export default function NewAgentPage() {
     t.agents.nameStepBootstrapMessage,
     t.agents.nameStepInvalidError,
     t.agents.nameStepAlreadyExistsError,
-    t.agents.nameStepNetworkError,
     t.agents.nameStepCheckError,
   ]);
 
